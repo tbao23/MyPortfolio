@@ -1,0 +1,56 @@
+<div class="hobbies-panel" tabindex="0" @onkeydown="HandleKeyDown">
+
+    <div class="hobby-tabs">
+        @foreach (var (cat, i) in PortfolioContent.HobbyCategories.Select((c, i) => (c, i)))
+        {
+            <button class="hobby-tab @(_activeTab == i ? "active" : "")" @onclick="() => SetTab(i)">
+                @cat.Label
+            </button>
+        }
+    </div>
+
+    <div class="hobby-viewer">
+        <img src="@CurrentSlide.ImageUrl" alt="@CurrentSlide.Title" />
+    </div>
+
+    <div class="hobby-nav">
+        <button class="hobby-nav-btn" @onclick="Prev" aria-label="Previous">&#8592;</button>
+        <span class="hobby-counter">@(_activeIndex + 1) / @ActiveCategory.Slides.Length</span>
+        <button class="hobby-nav-btn" @onclick="Next" aria-label="Next">&#8594;</button>
+    </div>
+
+    <div class="hobby-caption-box">
+        <p class="hobby-caption">@CurrentSlide.Caption</p>
+    </div>
+
+</div>
+
+@code {
+    private int _activeTab = 0;
+    private int _activeIndex = 0;
+
+    private HobbyCategory ActiveCategory => PortfolioContent.HobbyCategories[_activeTab];
+    private HobbySlide CurrentSlide => ActiveCategory.Slides[_activeIndex];
+
+    private void SetTab(int index)
+    {
+        _activeTab = index;
+        _activeIndex = 0;
+    }
+
+    private void Prev()
+    {
+        _activeIndex = (_activeIndex - 1 + ActiveCategory.Slides.Length) % ActiveCategory.Slides.Length;
+    }
+
+    private void Next()
+    {
+        _activeIndex = (_activeIndex + 1) % ActiveCategory.Slides.Length;
+    }
+
+    private void HandleKeyDown(KeyboardEventArgs e)
+    {
+        if (e.Key == "ArrowLeft") Prev();
+        else if (e.Key == "ArrowRight") Next();
+    }
+}

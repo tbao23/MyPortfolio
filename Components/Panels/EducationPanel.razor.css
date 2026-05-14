@@ -1,0 +1,240 @@
+/* ECU hero block */
+.edu-hero {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 2rem 2.5rem;
+    background: rgba(89, 42, 138, 0.1);
+    border: 1px solid rgba(89, 42, 138, 0.35);
+    border-radius: var(--radius-xl);
+    margin-bottom: 3rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.edu-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 60% 80% at 0% 50%, rgba(89, 42, 138, 0.25), transparent);
+    pointer-events: none;
+}
+
+.edu-hero-heading {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: -0.03em;
+    position: relative;
+    z-index: 1;
+    width: 100%;
+}
+
+.edu-hero-body {
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+    position: relative;
+    z-index: 1;
+}
+
+.edu-hero-logo {
+    width: 160px;
+    height: 160px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+.edu-hero-content { display: flex; flex-direction: column; gap: 0.4rem; }
+
+.edu-hero-school {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--ecu-gold);
+    letter-spacing: -0.025em;
+}
+
+.edu-hero-degree {
+    font-size: 1rem;
+    color: var(--text);
+}
+
+.edu-hero-gpa {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+.edu-hero-gpa-value {
+    color: var(--accent-2);
+    font-weight: 600;
+}
+
+.edu-hero-meta {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    display: flex;
+    gap: 1.25rem;
+    flex-wrap: wrap;
+    margin-top: 0.25rem;
+}
+
+.edu-hero-status { color: var(--accent-2); }
+
+/* Stats row */
+.edu-stats-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-bottom: 0.6rem;
+}
+
+.edu-stat {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.25rem 1.5rem;
+    backdrop-filter: blur(16px);
+    text-align: center;
+    box-shadow: 0 0 0 1px rgba(167, 139, 250, 0.3), 0 0 10px rgba(167, 139, 250, 0.15);
+}
+
+.edu-stat-value {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--ecu-gold);
+    letter-spacing: -0.04em;
+    line-height: 1;
+    margin-bottom: 0.4rem;
+}
+
+.edu-stat-label {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+}
+
+/* Courses */
+.courses-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.course-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem 1.75rem;
+    backdrop-filter: blur(16px);
+    box-shadow: 0 0 0 1px rgba(167, 139, 250, 0.35), 0 0 10px rgba(167, 139, 250, 0.2);
+    transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.course-card:hover {
+    border-color: rgba(96, 165, 250, 0.5);
+    box-shadow: 0 0 0 1px rgba(96, 165, 250, 0.3), 0 8px 32px rgba(0,0,0,0.4), 0 0 50px rgba(96, 165, 250, 0.15);
+    transform: translateY(-2px);
+}
+
+.course-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 0.85rem;
+}
+
+.course-number {
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    margin-bottom: 0.3rem;
+}
+
+.course-name {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text);
+    letter-spacing: -0.015em;
+}
+
+.grade-badge {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: -0.03em;
+    flex-shrink: 0;
+    padding: 0.3rem 0.75rem;
+    background: rgba(96, 165, 250, 0.1);
+    border: 1px solid rgba(96, 165, 250, 0.2);
+    border-radius: var(--radius);
+    line-height: 1;
+}
+
+.grade-badge--perfect {
+    color: var(--ecu-gold);
+    background: rgba(255, 199, 44, 0.1);
+    border-color: rgba(255, 199, 44, 0.25);
+}
+
+.grade-badge--in-progress {
+    font-size: 0.72rem;
+    font-weight: 500;
+    color: var(--teal);
+    background: rgba(52, 211, 153, 0.08);
+    border-color: rgba(52, 211, 153, 0.2);
+}
+
+.grade-badge--scheduled {
+    font-size: 0.72rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    background: transparent;
+    border-color: var(--border);
+}
+
+.course-desc {
+    font-size: 0.84rem;
+    color: var(--text);
+    line-height: 1.8;
+    margin-bottom: 1rem;
+    max-width: 72ch;
+}
+
+.course-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+}
+
+/* Narrative card */
+.edu-narrative-card {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1.75rem 2rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid rgba(89, 42, 138, 0.6);
+    border-radius: var(--radius-lg);
+    backdrop-filter: blur(16px);
+}
+
+.edu-narrative-card p {
+    font-size: 0.875rem;
+    color: var(--text);
+    line-height: 1.9;
+    max-width: 72ch;
+}
+
+@media (max-width: 600px) {
+    .edu-stats-row { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 480px) {
+    .edu-hero      { gap: 1.25rem; padding: 1.5rem; }
+    .edu-hero-body { flex-direction: column; align-items: flex-start; }
+    .edu-hero-logo { width: 100px; height: 100px; }
+}

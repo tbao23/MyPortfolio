@@ -1,0 +1,13 @@
+<div class="pages-list">
+    @foreach (var item in PortfolioContent.GitHubPages)
+    {
+        <a class="pages-card" href="@item.Url" target="_blank" rel="noopener">
+            <div class="pages-card-name">@item.Name ↗</div>
+            @if (item.Description is not null)
+            {
+                <div class="pages-card-desc">@item.Description</div>
+            }
+            <div class="pages-card-url">@item.Url</div>
+        </a>
+    }
+</div>

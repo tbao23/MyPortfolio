@@ -1,0 +1,40 @@
+.pages-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.pages-card {
+    display: block;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1rem 1.25rem;
+    text-decoration: none;
+    transition: border-color 0.2s, background 0.2s;
+}
+
+.pages-card:hover {
+    border-color: var(--border-accent);
+    background: var(--surface-2);
+}
+
+.pages-card-name {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--accent);
+    margin-bottom: 0.35rem;
+}
+
+.pages-card-desc {
+    font-size: 0.82rem;
+    color: var(--text);
+    line-height: 1.5;
+    margin-bottom: 0.5rem;
+}
+
+.pages-card-url {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    word-break: break-all;
+}

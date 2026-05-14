@@ -1,0 +1,25 @@
+<div class="panel-section">
+    <div class="resume-header-actions">
+        <a class="tag accent" href="docs/TylerBao_Resume.pdf" target="_blank" rel="noopener">view pdf 📄</a>
+    </div>
+    <div class="timeline">
+        @foreach (var job in PortfolioContent.Experience)
+        {
+            <div class="timeline-item">
+                <div class="timeline-year">@job.YearRange.Replace(" — ", " —\n")</div>
+                <div class="timeline-content">
+                    <div class="timeline-title">@job.Title</div>
+                    <div class="timeline-org">@job.Organization</div>
+                    <div class="timeline-desc">
+                        <ul>
+                            @foreach (var bullet in job.Bullets)
+                            {
+                                <li>@bullet</li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

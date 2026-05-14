@@ -1,0 +1,28 @@
+.skills-groups {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.skills-group-label {
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+}
+
+.skills-group-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+}
+
+.skill-tag {
+    background: var(--surface-2);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    font-size: 0.75rem;
+    padding: 0.25rem 0.6rem;
+}

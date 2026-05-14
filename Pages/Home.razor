@@ -1,0 +1,208 @@
+@page "/"
+@using MyPortfolio.Components.Panels
+@inject IJSRuntime JS
+
+<PageTitle>Tyler Bao — Software Engineer</PageTitle>
+
+<BzBento TItem="object" Theme="BzTheme.Glass" Columns="4" Gap="14" CssClass="portfolio-grid">
+
+    <!-- ── Bio: 2 cols × 2 rows ─────────────────────────── -->
+    <BzBentoItem ColSpan="2" RowSpan="2">
+        <div class="bio-tile">
+            <div class="bio-tile-top">
+                <div class="avatar-wrap">
+                    <img src="images/headshot.png" alt="Tyler Bao" class="avatar"
+                         onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+                    <div class="avatar-fallback">BT</div>
+                </div>
+                <div>
+                    <div class="hero-eyebrow">// <span>hello, world</span></div>
+                    <h1 class="hero-name">@PortfolioContent.FirstName <span class="gradient-text">@PortfolioContent.LastName</span></h1>
+                    <p class="hero-role">@PortfolioContent.Title</p>
+                </div>
+            </div>
+            <p class="hero-bio">@PortfolioContent.Intro</p>
+            <div class="bio-location">
+                <span class="location-region">📍North Carolina</span>
+                <span class="location-status">
+                    <span class="status-dot"></span>
+                    Open to Remote Work
+                </span>
+            </div>
+            <div class="quick-links">
+                <a class="tag accent" href="@SiteConfig.GitHubUrl" target="_blank" rel="noopener">github ↗</a>
+                <a class="tag accent" href="@SiteConfig.LinkedInUrl" target="_blank" rel="noopener">linkedin ↗</a>
+                <button class="tag accent tag-btn" @onclick='() => OpenPanel("contact")'>contact</button>
+            </div>
+        </div>
+    </BzBentoItem>
+
+    <!-- ── About Me: 1 × 1 ──────────────────────────────── -->
+    <BzBentoItem ColSpan="1" RowSpan="1" OnClick='() => OpenPanel("bio")'>
+        <div class="tile-content tile-content--center">
+            <div class="tile-icon tile-icon--vivid">👤</div>
+            <div class="tile-label">About Me</div>
+        </div>
+    </BzBentoItem>
+
+    <!-- ── Hobbies: 1 × 1 ───────────────────────────────── -->
+    <BzBentoItem ColSpan="1" RowSpan="1" OnClick='() => OpenPanel("hobbies")'>
+        <div class="tile-content tile-content--center">
+            <div class="tile-eyebrow tile-eyebrow--title">When I'm Not Coding</div>
+            <div class="hobbies-list">
+                @foreach (var h in PortfolioContent.Hobbies)
+                {
+                    <span class="hobby-tag">@h.Icon @h.Label</span>
+                }
+            </div>
+        </div>
+    </BzBentoItem>
+
+    <!-- ── ECU: 2 cols × 1 row ──────────────────────────── -->
+    <BzBentoItem ColSpan="2" RowSpan="1" OnClick='() => OpenPanel("education")'>
+        <div class="ecu-tile">
+            <div class="ecu-tile-heading">Educational Background</div>
+            <div class="ecu-tile-body">
+                <div class="ecu-tile-logo-col">
+                    <img src="images/ecu-logo.png" alt="East Carolina University" class="ecu-tile-logo"
+                         onerror="this.style.display='none'" />
+                </div>
+                <div class="ecu-tile-info-col">
+                    <div class="ecu-tile-degree">MS Software Engineering</div>
+                    <div class="ecu-tile-gpa-row">
+                        <span class="ecu-tile-gpa-label">GPA</span>
+                        <span class="ecu-tile-gpa-value">@PortfolioContent.EcuAverage</span>
+                    </div>
+                    <div class="ecu-stat--muted">East Carolina University</div>
+                </div>
+            </div>
+        </div>
+    </BzBentoItem>
+
+    <!-- ── Job Experience: 1 × 1 ────────────────────────── -->
+    <BzBentoItem ColSpan="1" RowSpan="1" OnClick='() => OpenPanel("experience")'>
+        <div class="tile-content tile-content--center">
+            <div class="tile-icon">💼</div>
+            <div class="tile-label">Job Experience</div>
+        </div>
+    </BzBentoItem>
+
+    <!-- ── Resume: 1 × 1 ───────────────────────────────── -->
+    <BzBentoItem ColSpan="1" RowSpan="1" OnClick="OpenResume">
+        <div class="tile-content tile-content--center">
+            <div class="tile-icon">📄</div>
+            <div class="tile-label">Resume</div>
+        </div>
+    </BzBentoItem>
+
+    <!-- ── Certifications: 2 cols × 1 row ───────────────── -->
+    <BzBentoItem ColSpan="2" RowSpan="1">
+        <div class="tile-content tile-content--center">
+            <div class="tile-eyebrow tile-eyebrow--title">Certifications</div>
+            <div class="certs-list">
+                @foreach (var c in PortfolioContent.Certifications)
+                {
+                    <div class="cert-item">
+                        @if (c.Url is not null)
+                        {
+                            <a class="cert-name cert-link" href="@c.Url" target="_blank" rel="noopener">@c.Name</a>
+                        }
+                        else
+                        {
+                            <span class="cert-name">@c.Name</span>
+                        }
+                        <span class="cert-meta">@c.Issuer · @c.Year</span>
+                    </div>
+                }
+                <div class="certs-linkedin">
+                    See LinkedIn Learning completions on my <a class="cert-link" href="@SiteConfig.LinkedInUrl" target="_blank" rel="noopener">LinkedIn</a>
+                </div>
+            </div>
+        </div>
+    </BzBentoItem>
+
+    <!-- ── Skills & Tools: 1 × 1 ───────────────────────── -->
+    <BzBentoItem ColSpan="1" RowSpan="1" OnClick='() => OpenPanel("skills")'>
+        <div class="tile-content tile-content--center">
+            <div class="tile-icon">🛠️</div>
+            <div class="tile-label">Skills &amp; Tools</div>
+        </div>
+    </BzBentoItem>
+
+    <!-- ── Projects: 1 × 1 ──────────────────────────────── -->
+    <BzBentoItem ColSpan="1" RowSpan="1" OnClick='() => OpenPanel("projects")'>
+        <div class="tile-content tile-content--center">
+            <div class="tile-icon">
+                <svg class="github-mark" viewBox="0 0 98 96" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M48.854 0C21.839 0 0 22 0 49.217c0 21.756 13.993 40.172 33.405 46.69 2.427.49 3.316-1.059 3.316-2.362 0-1.141-.08-5.052-.08-9.127-13.59 2.934-16.42-5.867-16.42-5.867-2.184-5.704-5.42-7.17-5.42-7.17-4.448-3.015.324-3.015.324-3.015 4.934.326 7.523 5.052 7.523 5.052 4.367 7.496 11.404 5.378 14.235 4.074.404-3.178 1.699-5.378 3.074-6.6-10.839-1.141-22.243-5.378-22.243-24.283 0-5.378 1.94-9.778 5.014-13.2-.485-1.222-2.184-6.275.486-13.038 0 0 4.125-1.304 13.426 5.052a46.97 46.97 0 0 1 12.214-1.63c4.125 0 8.33.571 12.213 1.63 9.302-6.356 13.427-5.052 13.427-5.052 2.67 6.763.97 11.816.485 13.038 3.155 3.422 5.015 7.822 5.015 13.2 0 18.905-11.404 23.06-22.324 24.283 1.78 1.548 3.316 4.481 3.316 9.126 0 6.6-.08 11.897-.08 13.526 0 1.304.89 2.853 3.316 2.364 19.412-6.52 33.405-24.935 33.405-46.691C97.707 22 75.788 0 48.854 0z"/>
+                </svg>
+            </div>
+            <div class="tile-label">Projects</div>
+        </div>
+    </BzBentoItem>
+
+    <!-- ── GitHub Pages: 1 × 1 ──────────────────────────── -->
+    <BzBentoItem ColSpan="1" RowSpan="1" OnClick='() => OpenPanel("githubpages")'>
+        <div class="tile-content tile-content--center">
+            <div class="tile-icon">🌐</div>
+            <div class="tile-label">GitHub Pages</div>
+            <div class="tile-sublabel">@PortfolioContent.GitHubPages.Length deployed</div>
+        </div>
+    </BzBentoItem>
+
+    <!-- ── Research Papers: 1 × 1 ───────────────────────── -->
+    <BzBentoItem ColSpan="1" RowSpan="1" OnClick='() => OpenPanel("research")'>
+        <div class="tile-content tile-content--center">
+            <div class="tile-icon">📄</div>
+            <div class="tile-label">Research Papers</div>
+        </div>
+    </BzBentoItem>
+
+</BzBento>
+
+<ContentModal IsOpen="_panelOpen" Title="@_panelTitle" OnClose="ClosePanel">
+    @if (_activePanel == "projects")   { <ProjectsPanel /> }
+    @if (_activePanel == "experience") { <ExperiencePanel /> }
+    @if (_activePanel == "education")  { <EducationPanel /> }
+    @if (_activePanel == "repos")      { <ReposPanel /> }
+    @if (_activePanel == "contact")    { <ContactPanel /> }
+    @if (_activePanel == "bio")        { <BioPanel /> }
+    @if (_activePanel == "skills")     { <SkillsPanel /> }
+    @if (_activePanel == "research")   { <ResearchPapersPanel /> }
+    @if (_activePanel == "hobbies")    { <HobbiesPanel /> }
+    @if (_activePanel == "githubpages") { <GitHubPagesPanel /> }
+</ContentModal>
+
+@code {
+    private bool   _panelOpen   = false;
+    private string _activePanel = string.Empty;
+
+    private string _panelTitle => _activePanel switch
+    {
+        "experience" => "// experience",
+        "education"  => "// education",
+        "projects"   => "// projects",
+        "skills"     => "// skills & tools",
+        "contact"    => "// contact",
+        "research"   => "// research papers",
+        "hobbies"    => "// hobbies",
+        "githubpages" => "// github pages",
+        "bio"         => "// about me",
+        _            => $"// {_activePanel}"
+    };
+
+    private void OpenPanel(string panel)
+    {
+        _activePanel = panel;
+        _panelOpen   = true;
+    }
+
+    private void ClosePanel()
+    {
+        _panelOpen   = false;
+        _activePanel = string.Empty;
+    }
+
+    private async Task OpenResume()
+        => await JS.InvokeVoidAsync("open", "docs/TylerBao_Resume.pdf", "_blank");
+}

@@ -1,0 +1,17 @@
+<div class="panel-section">
+    <div class="section-title">tech stack &amp; tools</div>
+    <div class="skills-groups">
+        @foreach (var group in PortfolioContent.SkillGroups)
+        {
+            <div class="skills-group">
+                <div class="skills-group-label">@group.Label</div>
+                <div class="skills-group-tags">
+                    @foreach (var tag in group.Tags)
+                    {
+                        <span class="tag skill-tag">@tag</span>
+                    }
+                </div>
+            </div>
+        }
+    </div>
+</div>

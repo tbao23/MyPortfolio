@@ -1,0 +1,45 @@
+@if (IsOpen)
+{
+    <div class="modal-overlay @(_visible ? "visible" : "")" @onclick="Close">
+        <div class="modal-dialog @(_visible ? "visible" : "")" @onclick:stopPropagation>
+            <div class="modal-header">
+                <span class="modal-title">@Title</span>
+                <button class="modal-close" @onclick="Close" aria-label="Close">✕</button>
+            </div>
+            <div class="modal-body">
+                @ChildContent
+            </div>
+        </div>
+    </div>
+}
+
+@code {
+    [Parameter] public bool IsOpen { get; set; }
+    [Parameter] public string Title { get; set; } = string.Empty;
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+    [Parameter] public EventCallback OnClose { get; set; }
+
+    private bool _visible;
+
+    protected override async Task OnParametersSetAsync()
+    {
+        if (IsOpen)
+        {
+            await Task.Delay(16);
+            _visible = true;
+            StateHasChanged();
+        }
+        else
+        {
+            _visible = false;
+        }
+    }
+
+    private async Task Close()
+    {
+        _visible = false;
+        StateHasChanged();
+        await Task.Delay(320);
+        await OnClose.InvokeAsync();
+    }
+}

@@ -1,0 +1,12 @@
+.bio-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.bio-panel-paragraph {
+    font-size: 0.875rem;
+    color: var(--text);
+    line-height: 1.9;
+    margin: 0;
+}

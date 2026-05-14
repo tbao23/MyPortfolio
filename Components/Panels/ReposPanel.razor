@@ -1,0 +1,86 @@
+@using MyPortfolio.Models
+@using MyPortfolio.Services
+@inject GitHubService GitHub
+
+@if (loading)
+{
+    <div class="status-text">fetching repos...</div>
+}
+else if (error is not null)
+{
+    <div class="error-text">@error</div>
+}
+else
+{
+    <div class="filter-bar">
+        <button class="filter-btn @(filter == "all" ? "active" : "")" @onclick='() => SetFilter("all")'>all (@allRepos.Count)</button>
+        <button class="filter-btn @(filter == "stars" ? "active" : "")" @onclick='() => SetFilter("stars")'>most starred</button>
+        <button class="filter-btn @(filter == "updated" ? "active" : "")" @onclick='() => SetFilter("updated")'>recently updated</button>
+    </div>
+
+    <div class="repos-grid">
+        @foreach (var repo in FilteredRepos)
+        {
+            <div class="repo-card">
+                <a class="repo-name" href="@repo.HtmlUrl" target="_blank" rel="noopener">@repo.Name</a>
+                <div class="repo-desc">@(repo.Description ?? "no description")</div>
+                <div class="repo-footer">
+                    @if (repo.Language is not null)
+                    {
+                        <span class="tag">@repo.Language.ToLower()</span>
+                    }
+                    @if (PagesUrls.TryGetValue(repo.Name, out var pagesUrl))
+                    {
+                        <a class="tag tag-live" href="@pagesUrl" target="_blank" rel="noopener">↗ live</a>
+                    }
+                    <div class="repo-stats">
+                        <span>★ @repo.StargazersCount</span>
+                        <span>⑂ @repo.ForksCount</span>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    @if (!FilteredRepos.Any())
+    {
+        <div class="status-text">no repos found.</div>
+    }
+}
+
+@code {
+    private List<GitHubRepo> allRepos = [];
+    private string filter = "all";
+    private bool loading = true;
+    private string? error;
+
+    private IEnumerable<GitHubRepo> FilteredRepos => filter switch
+    {
+        "stars"   => allRepos.OrderByDescending(r => r.StargazersCount),
+        "updated" => allRepos.OrderByDescending(r => r.UpdatedAt),
+        _         => allRepos
+    };
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            allRepos = await GitHub.GetPublicReposAsync();
+        }
+        catch (Exception ex)
+        {
+            error = $"could not load repos: {ex.Message}";
+        }
+        finally
+        {
+            loading = false;
+        }
+    }
+
+    private void SetFilter(string f) => filter = f;
+
+    private static readonly Dictionary<string, string> PagesUrls = new()
+    {
+        ["Agile-Integrity-Index-Dashboard"] = "https://tbao23.github.io/Agile-Integrity-Index-Dashboard/",
+    };
+}

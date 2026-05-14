@@ -1,0 +1,296 @@
+/* ===== Avatar ===== */
+.avatar-wrap {
+    flex-shrink: 0;
+    position: relative;
+}
+
+.avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid rgba(96, 165, 250, 0.35);
+    display: block;
+}
+
+.avatar-fallback {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(96, 165, 250, 0.15), rgba(167, 139, 250, 0.1));
+    border: 2px solid rgba(96, 165, 250, 0.25);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: -0.02em;
+}
+
+/* ===== Hero content ===== */
+.hero-eyebrow {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    letter-spacing: 0.08em;
+    margin-bottom: 0.5rem;
+}
+
+.hero-eyebrow span { color: var(--accent); }
+
+.hero-name {
+    font-size: clamp(1.8rem, 3.5vh, 3.25rem);
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    line-height: 1.05;
+    color: var(--text);
+    margin-bottom: 0.4rem;
+}
+
+.hero-name .gradient-text {
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.hero-role {
+    font-size: 0.85rem;
+    color: var(--accent-2);
+}
+
+.hero-bio {
+    font-size: 0.9rem;
+    color: var(--text);
+    line-height: 1.6;
+    max-width: 480px;
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+.quick-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    justify-content: center;
+    margin-top: auto;
+}
+
+/* ===== Bio tile ===== */
+.bio-tile {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    height: 100%;
+    padding: 0.25rem;
+}
+
+.bio-tile-top {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.bio-location {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+    margin-bottom: 0.5rem;
+}
+
+/* ===== Location ===== */
+.location-region {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text);
+}
+
+.location-status {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.72rem;
+    color: var(--accent);
+    font-weight: 600;
+}
+
+.status-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--accent);
+    flex-shrink: 0;
+    box-shadow: 0 0 6px var(--accent);
+    animation: pulse-dot 2.4s ease-in-out infinite;
+}
+
+@keyframes pulse-dot {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0.4; }
+}
+
+/* ===== ECU tile ===== */
+.ecu-tile {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    height: 100%;
+    padding: 0.25rem;
+}
+
+.ecu-tile-heading {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text);
+    text-align: center;
+    letter-spacing: -0.02em;
+}
+
+.ecu-tile-body {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    min-height: 0;
+}
+
+.ecu-tile-logo-col {
+    position: absolute;
+    left: 0.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+}
+
+.ecu-tile-logo {
+    height: clamp(52px, 6.5vh, 84px);
+    width: auto;
+    object-fit: contain;
+}
+
+.ecu-tile-info-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    text-align: center;
+}
+
+.ecu-tile-degree {
+    font-size: clamp(0.82rem, 1.2vw, 1.05rem);
+    font-weight: 700;
+    color: var(--ecu-gold);
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+}
+
+.ecu-tile-gpa-row {
+    display: flex;
+    align-items: baseline;
+    gap: 0.4rem;
+    margin-top: 0.1rem;
+}
+
+.ecu-tile-gpa-label {
+    font-size: clamp(1rem, 1.6vw, 1.4rem);
+    font-weight: 700;
+    color: var(--accent-2);
+    line-height: 1;
+}
+
+.ecu-tile-gpa-value {
+    font-size: clamp(1.4rem, 2.5vw, 2rem);
+    font-weight: 700;
+    color: var(--accent-2);
+    line-height: 1;
+}
+
+.ecu-stat--muted {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    margin-top: 0.15rem;
+}
+
+/* ===== GitHub mark SVG ===== */
+.github-mark {
+    width: 2rem;
+    height: 2rem;
+    fill: var(--text);
+    display: block;
+}
+
+/* ===== Hobbies tile ===== */
+.hobbies-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    justify-content: center;
+}
+
+.hobby-tag {
+    font-size: 0.72rem;
+    padding: 0.25rem 0.55rem;
+    border-radius: var(--radius);
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text);
+    white-space: nowrap;
+}
+
+/* ===== Certifications tile ===== */
+.certs-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+    width: 100%;
+}
+
+.cert-item {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 0.45rem 0.75rem;
+    border-radius: var(--radius);
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.cert-name {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--text);
+}
+
+.cert-link {
+    text-decoration: none;
+    color: var(--accent);
+}
+
+.cert-link:hover { text-decoration: underline; }
+
+.certs-linkedin {
+    margin-top: 0.6rem;
+    font-size: 0.7rem;
+    color: var(--text-muted);
+}
+
+.cert-meta {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+@media (max-width: 600px) {
+    .bio-tile-top { gap: 1rem; }
+    .avatar, .avatar-fallback { width: 60px; height: 60px; }
+    .hero-name    { font-size: clamp(1.6rem, 8vw, 2.25rem); }
+    .hero-eyebrow { display: none; }
+    .hero-bio     { font-size: 0.82rem; }
+    .quick-links  { gap: 0.45rem; }
+}

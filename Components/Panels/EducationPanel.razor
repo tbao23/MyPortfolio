@@ -1,0 +1,97 @@
+<div class="edu-hero">
+    <div class="edu-hero-heading">Educational Background</div>
+    <div class="edu-hero-body">
+        <img src="images/ecu-logo.png" alt="East Carolina University Pirates" class="edu-hero-logo" />
+        <div class="edu-hero-content">
+            <div class="edu-hero-school">East Carolina University</div>
+            <div class="edu-hero-degree">Master of Science — Software Engineering</div>
+            <div class="edu-hero-gpa">GPA &nbsp;<span class="edu-hero-gpa-value">@PortfolioContent.EcuAverage</span></div>
+            <div class="edu-hero-meta">
+                <span>Greenville, NC</span>
+                <span>2026 — Present</span>
+                <span class="edu-hero-status">In Progress</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="edu-stats-row">
+    <div class="edu-stat">
+        <div class="edu-stat-value">@PortfolioContent.EcuAverage</div>
+        <div class="edu-stat-label">current GPA</div>
+    </div>
+    <div class="edu-stat">
+        <div class="edu-stat-value">@PortfolioContent.EcuCoursesCount</div>
+        <div class="edu-stat-label">courses completed</div>
+    </div>
+    <div class="edu-stat">
+        <div class="edu-stat-value">@PortfolioContent.EcuCreditHours</div>
+        <div class="edu-stat-label">credit hours</div>
+    </div>
+    <div class="edu-stat">
+        <div class="edu-stat-value">MS</div>
+        <div class="edu-stat-label">program level</div>
+    </div>
+</div>
+
+<div class="panel-section">
+    <div class="section-title">degrees</div>
+    <div class="timeline">
+        @foreach (var edu in PortfolioContent.Education)
+        {
+            <div class="timeline-item">
+                <div class="timeline-year">@edu.YearRange</div>
+                <div class="timeline-content">
+                    <div class="timeline-title">@edu.Degree</div>
+                    <div class="timeline-org">@edu.Institution</div>
+                    @if (edu.Detail is not null)
+                    {
+                        <div class="timeline-detail">@edu.Detail</div>
+                    }
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<div class="panel-section">
+    <div class="section-title">completed coursework</div>
+    <div class="courses-list">
+        @foreach (var course in PortfolioContent.Courses)
+        {
+            <div class="course-card">
+                <div class="course-card-header">
+                    <div>
+                        <div class="course-number">@course.Code &nbsp;·&nbsp; @course.Credits</div>
+                        <div class="course-name">@course.Name</div>
+                    </div>
+                    @if (course.Grade.HasValue)
+                    {
+                        <div class="grade-badge @(course.Grade == 100 ? "grade-badge--perfect" : "")">@course.Grade</div>
+                    }
+                    else
+                    {
+                        <div class="grade-badge grade-badge--@(course.Status == "In Progress" ? "in-progress" : "scheduled")">@course.Status</div>
+                    }
+                </div>
+                <p class="course-desc">@course.Description</p>
+                <div class="course-tags">
+                    @foreach (var tag in course.Tags)
+                    {
+                        <span class="tag">@tag</span>
+                    }
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<div class="panel-section">
+    <div class="section-title">educational goals</div>
+    <div class="edu-narrative-card">
+        @foreach (var para in PortfolioContent.EducationalGoals)
+        {
+            <p>@para</p>
+        }
+    </div>
+</div>

@@ -1,0 +1,26 @@
+<div class="panel-section">
+    <div class="papers-list">
+        @foreach (var paper in PortfolioContent.Papers)
+        {
+            <div class="paper-card">
+                <div class="paper-card-header">
+                    <div>
+                        <div class="paper-meta">@paper.Course &nbsp;·&nbsp; @paper.Semester</div>
+                        <div class="paper-title">@paper.Title</div>
+                    </div>
+                    @if (paper.PdfPath is not null)
+                    {
+                        <a class="tag accent" href="@paper.PdfPath" target="_blank" rel="noopener">view pdf ↗</a>
+                    }
+                </div>
+                <p class="paper-desc">@paper.Description</p>
+                <div class="paper-tags">
+                    @foreach (var tag in paper.Tags)
+                    {
+                        <span class="tag">@tag</span>
+                    }
+                </div>
+            </div>
+        }
+    </div>
+</div>

@@ -1,0 +1,42 @@
+# Build output
+bin/
+obj/
+dist/
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docview
+
+# Rider
+.idea/
+
+# NuGet
+*.nupkg
+*.snupkg
+packages/
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# Blazor WASM
+wwwroot/_framework/
+
+# Claude Code
+.claude/
+Claude.md
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Environment / secrets
+.env
+.env.local
+appsettings.Local.json
+appsettings.Development.json
+
+# Logs
+*.log

@@ -1,0 +1,86 @@
+.projects-tabs {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.25rem;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 0.75rem;
+}
+
+.projects-tab {
+    background: none;
+    border: 1px solid transparent;
+    border-radius: var(--radius);
+    color: var(--text-muted);
+    font-family: var(--font);
+    font-size: 0.78rem;
+    padding: 0.35rem 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.projects-tab:hover {
+    color: var(--text);
+    border-color: var(--border);
+}
+
+.projects-tab.active {
+    background: var(--accent-dim);
+    border-color: var(--border-accent);
+    color: var(--accent);
+}
+
+.school-projects-list,
+.oss-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.project-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.project-card:hover {
+    border-color: var(--border-accent);
+    box-shadow: 0 0 16px rgba(96, 165, 250, 0.1);
+}
+
+.project-card-header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.project-name {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--accent);
+    text-decoration: none;
+}
+
+.project-name:hover { text-decoration: underline; }
+
+.project-context {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+}
+
+.project-desc {
+    font-size: 0.78rem;
+    color: var(--text);
+    line-height: 1.6;
+}
+
+.project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 0.25rem;
+}
